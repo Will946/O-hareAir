@@ -29,7 +29,6 @@ The name is taken from The Lorax (2012). In the film, Aloysius O'Hare is the may
   - [History logging](#history-logging)
 - [The web dashboard](#the-web-dashboard)
 - [Flashing it yourself](#flashing-it-yourself)
-- [Repository layout](#repository-layout)
 - [Known limitations](#known-limitations)
 
 ---
@@ -238,21 +237,6 @@ Manual control: an Auto/Manual toggle, a reference table of which AQI-UBA rating
 4. Flash it, then open the Serial Monitor at 115200 baud; it prints the board's IP address once connected.
 5. Set the needle to its physical 0° position before powering on, since the firmware has no way to detect where it actually is.
 6. Open that IP address in a browser on the same network.
-
----
-
-## Repository layout
-
-```
-OhareAir/
-├── Code/
-│   └── OhareAir/
-│       └── OhareAir.ino        Firmware (V1 / ESP32-S3, current)
-├── OhareV1PCB/                 V1 shield: KiCad source, schematic PDF, Gerbers
-├── OhareV2PCB/                 V2 board: KiCad source, schematic PDF
-├── 3DFiles/                    Enclosure CAD (Fusion 360 + 3MF), renders, photo
-└── Test.mov                    Short demo clip of the assembled unit
-```
 
 ---
 
