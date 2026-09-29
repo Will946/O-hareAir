@@ -1,6 +1,6 @@
 # O'Hare Air
 
-![O'Hare Air, assembled and running](3DFiles/OhareAir.jpeg)
+![O'Hare Air, assembled and running](3DFiles/3DRender.png)
 
 A desktop air quality monitor shaped like a flower. It watches temperature, humidity, and air quality (eCO2/eTVOC/AQI-UBA) with a ScioSense ENS161 + ENS210, points a physical stepper-driven needle at the current rating, glows green-to-red through an RGB LED, and serves a full live dashboard over Wi-Fi with history and CSV export — no app, no cloud, no account.
 
@@ -8,10 +8,7 @@ A desktop air quality monitor shaped like a flower. It watches temperature, humi
 
 ## Where the name comes from
 
-In *The Lorax* (2012), the villain is **Aloysius O'Hare** — mayor of Thneedville and founder/CEO of **O'Hare Air**, a company that sells bottled, purified air to a town whose real air was ruined by industrial pollution. O'Hare's whole business model depends on the air staying bad: clean air for sale, as long as nobody looks too closely at why it's needed in the first place.
-
-**O'Hare Air**, this project, is the joke turned sincere: a device that actually measures the air, named after the guy in a kids' movie who got rich pretending to fix it. No bottles, no subscription — just a flower on your desk that tells you the truth about the room you're standing in.
-
+The name is taken from The Lorax (2012). In the film, Aloysius O'Hare is the mayor of Thneedville and the founder/CEO of "O'Hare Air," a company that sells bottled air to the town after industrial pollution ruined the natural air supply. This project borrows the name "O'Hare Air" for a device that measures real air quality.
 ---
 
 ## Table of contents
@@ -126,16 +123,6 @@ Full schematic: [`OhareV2PCB/OhareV2Sch.pdf`](OhareV2PCB/OhareV2Sch.pdf); KiCad 
 | LEDs | 1 (drives the dev board's onboard LED) | 3, individually placed under the enclosure's petals |
 | Flashing | Dev board's onboard USB-to-serial bridge | Native USB on the H2 itself |
 | Firmware status | **Fully supported** — this is what the current sketch targets | **Hardware is designed; firmware is not yet ported** (see below) |
-
----
-
-## The enclosure
-
-![Flower render](3DFiles/3DRender.png)
-
-The electronics live inside a 3D-printed flower: a ribbed green base holding the PCB and stepper, with translucent petals that let the LED glow through. It's a deliberate match for the villain-turned-sincere theme — bottled "air quality" wrapped in something that actually looks like it grew there.
-
-CAD source is in [`3DFiles/OhareAir.f3z`](3DFiles/OhareAir.f3z) (Fusion 360), and a ready-to-print petal file is [`3DFiles/Ohare-Flower.3mf`](3DFiles/Ohare-Flower.3mf). A short demo clip of the real, assembled unit is [`Test.mov`](Test.mov).
 
 ---
 
@@ -272,8 +259,7 @@ OhareAir/
 ## Known limitations
 
 - **Highly temperature- and humidity-dependent.** The ENS161 is a metal-oxide gas sensor: its readings shift with the temperature and humidity it's told to compensate for, and the board's own self-heating (from the MCU and Wi-Fi radio) pushes the ENS210's raw temperature well above the actual room temperature. That's corrected with a fixed offset (`TEMP_OFFSET_C`) tuned for this specific board — a different enclosure, a different MCU, or even just a different ambient environment can shift the true offset enough that eTVOC, eCO2, and AQI-UBA all read differently than they would with perfect compensation.
-- **V2 firmware doesn't exist yet.** The current sketch assumes an ESP32-S3 with a Wi-Fi radio, a single onboard NeoPixel on `GPIO48`, and no physical buttons. V2's ESP32-H2 has **no Wi-Fi** (BLE and 802.15.4 only), drives three discrete LEDs instead of one, and adds BOOT/reset buttons the current code doesn't read. Bringing V2 up will mean a different transport for the dashboard (BLE, most likely, or a Wi-Fi companion approach) and reworking the LED driver for three chained LEDs instead of one.
 - **History doesn't survive a reboot.** It's RAM-only; a power cycle clears it.
 - **The needle has no home sensor.** It has to be manually zeroed before every power-up.
 - **Wi-Fi credentials are hardcoded** in the sketch, not configurable from the dashboard.
-- **No OTA updates** — reflashing means plugging in over USB.
+- **No OTA updates** — reflashing means plugging in over USB, which means having to disassemble the enclosure to access the port. 
