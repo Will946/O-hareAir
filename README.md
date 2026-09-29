@@ -83,7 +83,7 @@ V1 is a **shield**: a round board with two 2×22 headers (`J9`/`J10`) that plug 
 | J1 | 3-pin socket | Breaks out 5 V / 3.3 V / LED data for the LED module |
 | H1–H3, TP1 | — | Mounting holes and a test point |
 
-The two headers expose every GPIO the dev board offers, but the sketch only actually uses a handful of them: `GPIO8`/`GPIO9` for I2C, `GPIO4`–`GPIO7` for the stepper's four ULN2003 driver inputs, and `GPIO48` for the dev board's own onboard RGB LED (V1's firmware drives *that* LED, not the one on the shield; see [Known limitations](#known-limitations)).
+The two headers expose every GPIO the dev board offers, but the sketch only actually uses a handful of them: `GPIO8`/`GPIO9` for I2C, `GPIO4`–`GPIO7` for the stepper's four ULN2003 driver inputs, and `GPIO48` for the dev board's own onboard RGB LED. 
 
 Full schematic: [`OhareV1PCB/OhareV1Sch.pdf`](OhareV1PCB/OhareV1Sch.pdf). Manufacturing files (Gerbers) are in [`OhareV1PCB/Gerber.zip`](OhareV1PCB/Gerber.zip); KiCad source is [`OhareV1.kicad_pcb`](OhareV1PCB/OhareV1.kicad_pcb) / [`OhareV1.kicad_sch`](OhareV1PCB/OhareV1.kicad_sch).
 
@@ -122,7 +122,7 @@ Full schematic: [`OhareV2PCB/OhareV2Sch.pdf`](OhareV2PCB/OhareV2Sch.pdf); KiCad 
 | Power in | Through the dev board's own USB-C | Native USB-C directly on the PCB |
 | LEDs | 1 (drives the dev board's onboard LED) | 3, individually placed under the enclosure's petals |
 | Flashing | Dev board's onboard USB-to-serial bridge | Native USB on the H2 itself |
-| Firmware status | **Fully supported**, this is what the current sketch targets | **Hardware is designed; firmware is not yet ported** (see below) |
+| Firmware status | **Fully supported**, this is what the current sketch targets | **Current firmware is supported on new version |
 
 ---
 
